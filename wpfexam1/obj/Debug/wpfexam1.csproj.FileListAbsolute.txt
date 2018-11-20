@@ -1,0 +1,15 @@
+C:\Users\pcwtpqy\source\repos\wpfexam1\wpfexam1\bin\Debug\wpfexam1.exe.config
+C:\Users\pcwtpqy\source\repos\wpfexam1\wpfexam1\bin\Debug\wpfexam1.exe
+C:\Users\pcwtpqy\source\repos\wpfexam1\wpfexam1\bin\Debug\wpfexam1.pdb
+C:\Users\pcwtpqy\source\repos\wpfexam1\wpfexam1\obj\Debug\wpfexam1.csprojResolveAssemblyReference.cache
+C:\Users\pcwtpqy\source\repos\wpfexam1\wpfexam1\obj\Debug\MainWindow.g.cs
+C:\Users\pcwtpqy\source\repos\wpfexam1\wpfexam1\obj\Debug\App.g.cs
+C:\Users\pcwtpqy\source\repos\wpfexam1\wpfexam1\obj\Debug\wpfexam1_MarkupCompile.cache
+C:\Users\pcwtpqy\source\repos\wpfexam1\wpfexam1\obj\Debug\wpfexam1_MarkupCompile.lref
+C:\Users\pcwtpqy\source\repos\wpfexam1\wpfexam1\obj\Debug\MainWindow.baml
+C:\Users\pcwtpqy\source\repos\wpfexam1\wpfexam1\obj\Debug\wpfexam1.g.resources
+C:\Users\pcwtpqy\source\repos\wpfexam1\wpfexam1\obj\Debug\wpfexam1.Properties.Resources.resources
+C:\Users\pcwtpqy\source\repos\wpfexam1\wpfexam1\obj\Debug\wpfexam1.csproj.GenerateResource.cache
+C:\Users\pcwtpqy\source\repos\wpfexam1\wpfexam1\obj\Debug\wpfexam1.csproj.CoreCompileInputs.cache
+C:\Users\pcwtpqy\source\repos\wpfexam1\wpfexam1\obj\Debug\wpfexam1.exe
+C:\Users\pcwtpqy\source\repos\wpfexam1\wpfexam1\obj\Debug\wpfexam1.pdb
