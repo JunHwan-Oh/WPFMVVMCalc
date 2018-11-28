@@ -49,7 +49,7 @@ namespace wpfexam1
 
         public ICommand PlusCommand
         {
-            get { return (this.plusCommand) ?? (this.plusCommand = new DelegateCommand(Plus)); }
+            get { return (this.plusCommand) ?? (this.plusCommand = new RelayCommand(Plus)); }
         }
 
         private void Plus()
@@ -63,7 +63,7 @@ namespace wpfexam1
 
         public ICommand MinusCommand
         {
-            get { return (this.minusCommand) ?? (this.minusCommand = new DelegateCommand(Minus)); }
+            get { return (this.minusCommand) ?? (this.minusCommand = new RelayCommand(Minus)); }
         }
 
         private void Minus()
@@ -77,7 +77,7 @@ namespace wpfexam1
 
         public ICommand MulCommand
         {
-            get { return (this.mulCommand) ?? (this.mulCommand = new DelegateCommand(Mul)); }
+            get { return (this.mulCommand) ?? (this.mulCommand = new RelayCommand(Mul)); }
         }
 
         private void Mul()
@@ -92,7 +92,7 @@ namespace wpfexam1
 
         public ICommand DivCommand
         {
-            get { return (this.divCommand) ?? (this.divCommand = new DelegateCommand(Div)); }
+            get { return (this.divCommand) ?? (this.divCommand = new RelayCommand(Div)); }
         }
 
         private void Div()
@@ -106,7 +106,7 @@ namespace wpfexam1
 
         public ICommand ResultCommand
         {
-            get { return (this.resultCommand) ?? (this.resultCommand = new DelegateCommand(Result)); }
+            get { return (this.resultCommand) ?? (this.resultCommand = new RelayCommand(Result)); }
         }
 
         private void Result()
@@ -135,7 +135,7 @@ namespace wpfexam1
 
         public ICommand CeCommand
         {
-            get { return (this.ceCommand) ?? (this.ceCommand = new DelegateCommand(CE)); }
+            get { return (this.ceCommand) ?? (this.ceCommand = new RelayCommand(CE)); }
         }
 
         private void CE()
@@ -148,7 +148,7 @@ namespace wpfexam1
 
         public ICommand Btn1Command
         {
-            get { return (this.btn1Command) ?? (this.btn1Command = new DelegateCommand(Btn1)); }
+            get { return (this.btn1Command) ?? (this.btn1Command = new RelayCommand(Btn1)); }
         }
 
         private void Btn1()
@@ -160,7 +160,7 @@ namespace wpfexam1
 
         public ICommand Btn2Command
         {
-            get { return (this.btn2Command) ?? (this.btn2Command = new DelegateCommand(Btn2)); }
+            get { return (this.btn2Command) ?? (this.btn2Command = new RelayCommand(Btn2)); }
         }
 
         private void Btn2()
@@ -172,7 +172,7 @@ namespace wpfexam1
 
         public ICommand Btn3Command
         {
-            get { return (this.btn3Command) ?? (this.btn3Command = new DelegateCommand(Btn3)); }
+            get { return (this.btn3Command) ?? (this.btn3Command = new RelayCommand(Btn3)); }
         }
 
         private void Btn3()
@@ -184,7 +184,7 @@ namespace wpfexam1
 
         public ICommand Btn4Command
         {
-            get { return (this.btn4Command) ?? (this.btn4Command = new DelegateCommand(Btn4)); }
+            get { return (this.btn4Command) ?? (this.btn4Command = new RelayCommand(Btn4)); }
         }
 
         private void Btn4()
@@ -196,7 +196,7 @@ namespace wpfexam1
 
         public ICommand Btn5Command
         {
-            get { return (this.btn5Command) ?? (this.btn5Command = new DelegateCommand(Btn5)); }
+            get { return (this.btn5Command) ?? (this.btn5Command = new RelayCommand(Btn5)); }
         }
 
         private void Btn5()
@@ -208,7 +208,7 @@ namespace wpfexam1
 
         public ICommand Btn6Command
         {
-            get { return (this.btn6Command) ?? (this.btn6Command = new DelegateCommand(Btn6)); }
+            get { return (this.btn6Command) ?? (this.btn6Command = new RelayCommand(Btn6)); }
         }
 
         private void Btn6()
@@ -220,7 +220,7 @@ namespace wpfexam1
 
         public ICommand Btn7Command
         {
-            get { return (this.btn7Command) ?? (this.btn7Command = new DelegateCommand(Btn7)); }
+            get { return (this.btn7Command) ?? (this.btn7Command = new RelayCommand(Btn7)); }
         }
 
         private void Btn7()
@@ -232,7 +232,7 @@ namespace wpfexam1
 
         public ICommand Btn8Command
         {
-            get { return (this.btn8Command) ?? (this.btn8Command = new DelegateCommand(Btn8)); }
+            get { return (this.btn8Command) ?? (this.btn8Command = new RelayCommand(Btn8)); }
         }
 
         private void Btn8()
@@ -244,7 +244,7 @@ namespace wpfexam1
 
         public ICommand Btn9Command
         {
-            get { return (this.btn9Command) ?? (this.btn9Command = new DelegateCommand(Btn9)); }
+            get { return (this.btn9Command) ?? (this.btn9Command = new RelayCommand(Btn9)); }
         }
 
         private void Btn9()
@@ -256,7 +256,7 @@ namespace wpfexam1
 
         public ICommand Btn0Command
         {
-            get { return (this.btn0Command) ?? (this.btn0Command = new DelegateCommand(Btn0)); }
+            get { return (this.btn0Command) ?? (this.btn0Command = new RelayCommand(Btn0)); }
         }
 
         private void Btn0()
@@ -265,71 +265,41 @@ namespace wpfexam1
         }
         // made by 오준환
         #endregion
-        
-        #region DelegateCommand Class
-        public class DelegateCommand : ICommand
+
+        public class RelayCommand : ICommand
         {
-            private readonly Func<bool> canExecute;
-            private readonly Action execute;
-
-            /// <summary>
-            /// Initializes a new instance of the DelegateCommand class.
-            /// </summary>
-            /// <param name="execute">indicate an execute function</param>
-            public DelegateCommand(Action execute) : this(execute, null)
+            public event EventHandler CanExecuteChanged
+            {
+                add { CommandManager.RequerySuggested += value; }
+                remove { CommandManager.RequerySuggested -= value; }
+            }
+            private Action methodToExecute;
+            private Func<bool> canExecuteEvaluator;
+            public RelayCommand(Action methodToExecute, Func<bool> canExecuteEvaluator)
+            {
+                this.methodToExecute = methodToExecute;
+                this.canExecuteEvaluator = canExecuteEvaluator;
+            }
+            public RelayCommand(Action methodToExecute)
+                : this(methodToExecute, null)
             {
             }
-
-            /// <summary>
-            /// Initializes a new instance of the DelegateCommand class.
-            /// </summary>
-            /// <param name="execute">execute function </param>
-            /// <param name="canExecute">can execute function</param>
-            public DelegateCommand(Action execute, Func<bool> canExecute)
+            public bool CanExecute(object parameter)
             {
-                this.execute = execute;
-                this.canExecute = canExecute;
-            }
-            /// <summary>
-            /// can executes event handler
-            /// </summary>
-            public event EventHandler CanExecuteChanged;
-
-            /// <summary>
-            /// implement of icommand can execute method
-            /// </summary>
-            /// <param name="o">parameter by default of icomand interface</param>
-            /// <returns>can execute or not</returns>
-            public bool CanExecute(object o)
-            {
-                if (this.canExecute == null)
+                if (this.canExecuteEvaluator == null)
                 {
                     return true;
                 }
-                return this.canExecute();
-            }
-
-            /// <summary>
-            /// implement of icommand interface execute method
-            /// </summary>
-            /// <param name="o">parameter by default of icomand interface</param>
-            public void Execute(object o)
-            {
-                this.execute();
-            }
-
-            /// <summary>
-            /// raise ca excute changed when property changed
-            /// </summary>
-            public void RaiseCanExecuteChanged()
-            {
-                if (this.CanExecuteChanged != null)
+                else
                 {
-                    this.CanExecuteChanged(this, EventArgs.Empty);
+                    bool result = this.canExecuteEvaluator.Invoke();
+                    return result;
                 }
             }
-
+            public void Execute(object parameter)
+            {
+                this.methodToExecute.Invoke();
+            }
         }
-        #endregion
     }
 }
